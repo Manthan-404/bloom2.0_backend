@@ -1,0 +1,312 @@
+// ============================================================
+// BLOOM — Condition Library
+// Agent 4 (Content Lead) — 20+ Research-backed Conditions
+// ============================================================
+
+import { Condition } from '../types';
+
+export const conditionLibrary: Condition[] = [
+  {
+    id: 'endometriosis',
+    name: 'Endometriosis',
+    category: 'Reproductive',
+    description: 'A condition where tissue similar to the lining of the uterus grows outside the uterus, causing pain and sometimes fertility issues.',
+    prevalence: 'Affects approximately 10% of reproductive-age women worldwide (190 million).',
+    commonSymptoms: ['Severe menstrual cramps', 'Chronic pelvic pain', 'Pain during intercourse', 'Heavy periods', 'Fatigue', 'Bloating', 'Nausea', 'Pain with bowel movements'],
+    relatedConditions: ['Adenomyosis', 'Irritable Bowel Syndrome', 'Interstitial Cystitis'],
+    commonMisdiagnoses: ['IBS', 'Pelvic Inflammatory Disease', 'Ovarian cysts', 'Normal period pain'],
+    averageDiagnosisTime: '7-10 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Severe pelvic pain that limits daily activities', 'Pain that doesn\'t respond to OTC medications', 'Difficulty getting pregnant', 'Heavy bleeding soaking through a pad/tampon every 1-2 hours'],
+    references: ['WHO Fact Sheet on Endometriosis (2023)', 'ACOG Practice Bulletin No. 114']
+  },
+  {
+    id: 'pcos',
+    name: 'Polycystic Ovary Syndrome (PCOS)',
+    category: 'Reproductive/Endocrine',
+    description: 'A hormonal disorder causing enlarged ovaries with small cysts, affecting metabolism, fertility, and appearance.',
+    prevalence: 'Affects 8-13% of reproductive-age women; up to 70% remain undiagnosed.',
+    commonSymptoms: ['Irregular periods', 'Excess androgen (acne, hair growth)', 'Weight gain', 'Difficulty losing weight', 'Thinning hair', 'Skin darkening', 'Mood changes', 'Fatigue'],
+    relatedConditions: ['Insulin Resistance', 'Type 2 Diabetes', 'Metabolic Syndrome', 'Sleep Apnea'],
+    commonMisdiagnoses: ['Thyroid disorders', 'Cushing syndrome', 'Adrenal hyperplasia'],
+    averageDiagnosisTime: '2-3 years',
+    lifeStageRelevance: ['puberty', 'reproductive'],
+    whenToSeeDoctor: ['Missed periods for 3+ months', 'Excessive facial or body hair growth', 'Difficulty conceiving after 12 months', 'Signs of insulin resistance'],
+    references: ['International PCOS Network Guidelines (2023)', 'Endocrine Society Clinical Practice Guideline']
+  },
+  {
+    id: 'adenomyosis',
+    name: 'Adenomyosis',
+    category: 'Reproductive',
+    description: 'A condition where endometrial tissue grows into the muscular wall of the uterus, causing heavy bleeding and pain.',
+    prevalence: 'Affects up to 20-35% of women, most commonly diagnosed in 40s-50s.',
+    commonSymptoms: ['Heavy menstrual bleeding', 'Severe cramping', 'Enlarged uterus', 'Bloating', 'Pelvic pressure', 'Pain during intercourse'],
+    relatedConditions: ['Endometriosis', 'Uterine fibroids'],
+    commonMisdiagnoses: ['Uterine fibroids', 'Endometriosis', 'Normal heavy periods'],
+    averageDiagnosisTime: '5-7 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Heavy bleeding requiring hourly pad changes', 'Passing large blood clots', 'Chronic pelvic pain between periods'],
+    references: ['ACOG Committee Opinion (2022)', 'Human Reproduction Update Meta-analysis']
+  },
+  {
+    id: 'fibroids',
+    name: 'Uterine Fibroids',
+    category: 'Reproductive',
+    description: 'Noncancerous growths of the uterus that often appear during childbearing years.',
+    prevalence: 'Up to 70-80% of women develop fibroids by age 50.',
+    commonSymptoms: ['Heavy menstrual bleeding', 'Prolonged periods (7+ days)', 'Pelvic pressure', 'Frequent urination', 'Constipation', 'Back pain', 'Leg pain'],
+    relatedConditions: ['Anemia', 'Adenomyosis'],
+    commonMisdiagnoses: ['Adenomyosis', 'Ovarian cysts', 'Endometrial polyps'],
+    averageDiagnosisTime: '1-3 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Heavy bleeding causing anemia symptoms', 'Pelvic pain that doesn\'t go away', 'Difficulty emptying bladder completely'],
+    references: ['NICE Guideline NG88 (2024)', 'ACOG Practice Bulletin No. 228']
+  },
+  {
+    id: 'pmdd',
+    name: 'Premenstrual Dysphoric Disorder (PMDD)',
+    category: 'Mood/Reproductive',
+    description: 'A severe form of PMS causing significant mood disturbances that interfere with daily life in the luteal phase.',
+    prevalence: 'Affects 3-8% of menstruating women.',
+    commonSymptoms: ['Severe mood swings', 'Intense irritability', 'Depression before period', 'Anxiety', 'Fatigue', 'Difficulty concentrating', 'Sleep changes', 'Feeling overwhelmed', 'Physical PMS symptoms'],
+    relatedConditions: ['Depression', 'Anxiety disorders', 'PMS'],
+    commonMisdiagnoses: ['Bipolar disorder', 'Major depression', 'Generalized anxiety', 'Personality disorders'],
+    averageDiagnosisTime: '12+ years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Mood symptoms severely impacting work or relationships', 'Thoughts of self-harm (seek immediate help)', 'Symptoms consistently appear 1-2 weeks before period and resolve after'],
+    references: ['IAPMD Clinical Guidelines (2023)', 'DSM-5 Diagnostic Criteria']
+  },
+  {
+    id: 'thyroid-hypo',
+    name: 'Hypothyroidism',
+    category: 'Endocrine',
+    description: 'An underactive thyroid gland that doesn\'t produce enough thyroid hormone, slowing metabolism.',
+    prevalence: 'Affects ~5% of women; 5x more common in women than men.',
+    commonSymptoms: ['Fatigue', 'Weight gain', 'Cold sensitivity', 'Dry skin', 'Hair loss', 'Heavy periods', 'Brain fog', 'Constipation', 'Depression', 'Muscle weakness'],
+    relatedConditions: ['Hashimoto\'s thyroiditis', 'PCOS', 'Depression'],
+    commonMisdiagnoses: ['Depression', 'Chronic fatigue syndrome', 'Menopause', 'Normal aging'],
+    averageDiagnosisTime: '2-5 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause', 'post-menopause'],
+    whenToSeeDoctor: ['Persistent unexplained fatigue', 'Noticeable weight gain without diet changes', 'Family history of thyroid disease', 'Changes in menstrual cycle'],
+    references: ['American Thyroid Association Guidelines (2023)', 'Lancet Review on Hypothyroidism']
+  },
+  {
+    id: 'thyroid-hyper',
+    name: 'Hyperthyroidism',
+    category: 'Endocrine',
+    description: 'An overactive thyroid gland producing too much thyroid hormone, accelerating metabolism.',
+    prevalence: 'Affects ~1.2% of women in the US.',
+    commonSymptoms: ['Rapid heartbeat', 'Weight loss', 'Anxiety', 'Tremors', 'Heat sensitivity', 'Light or missed periods', 'Sleep difficulties', 'Eye bulging'],
+    relatedConditions: ['Graves\' disease', 'Thyroid eye disease', 'Osteoporosis'],
+    commonMisdiagnoses: ['Anxiety disorder', 'Panic disorder', 'Cardiac arrhythmia'],
+    averageDiagnosisTime: '1-2 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Unexplained rapid weight loss', 'Racing heart at rest', 'Visible neck swelling', 'Significant anxiety with physical symptoms'],
+    references: ['American Thyroid Association Guidelines', 'NICE CKS Hyperthyroidism']
+  },
+  {
+    id: 'iron-deficiency',
+    name: 'Iron Deficiency Anemia',
+    category: 'Hematological',
+    description: 'A condition where blood lacks adequate healthy red blood cells due to insufficient iron.',
+    prevalence: 'Affects ~20% of menstruating women globally.',
+    commonSymptoms: ['Extreme fatigue', 'Weakness', 'Pale skin', 'Shortness of breath', 'Dizziness', 'Cold hands/feet', 'Brittle nails', 'Headaches', 'Cravings for non-food items'],
+    relatedConditions: ['Heavy menstrual bleeding', 'Fibroids', 'Celiac disease'],
+    commonMisdiagnoses: ['Depression', 'Chronic fatigue syndrome', 'Hypothyroidism'],
+    averageDiagnosisTime: '1-2 years',
+    lifeStageRelevance: ['puberty', 'reproductive', 'pregnancy', 'postpartum'],
+    whenToSeeDoctor: ['Persistent fatigue not resolved by rest', 'Pale or yellowish skin', 'Shortness of breath with mild exertion'],
+    references: ['WHO Global Anemia Report (2023)', 'Lancet Hematology Review']
+  },
+  {
+    id: 'perimenopause',
+    name: 'Perimenopause',
+    category: 'Life Stage/Hormonal',
+    description: 'The transitional period before menopause when estrogen levels begin fluctuating and declining.',
+    prevalence: 'Affects all women, typically beginning in mid-40s (can start in late 30s).',
+    commonSymptoms: ['Irregular periods', 'Hot flashes', 'Night sweats', 'Sleep disturbances', 'Mood changes', 'Vaginal dryness', 'Decreased libido', 'Weight gain', 'Brain fog', 'Joint pain'],
+    relatedConditions: ['Osteoporosis risk', 'Cardiovascular disease risk', 'Depression'],
+    commonMisdiagnoses: ['Depression', 'Anxiety', 'Thyroid disorders', 'Chronic fatigue'],
+    averageDiagnosisTime: '2-4 years',
+    lifeStageRelevance: ['perimenopause'],
+    whenToSeeDoctor: ['Periods becoming very heavy or frequent', 'Spotting between periods', 'Mood changes affecting daily life', 'Sleep disruption lasting weeks'],
+    references: ['NAMS Position Statement (2023)', 'Menopause Society Guidelines']
+  },
+  {
+    id: 'interstitial-cystitis',
+    name: 'Interstitial Cystitis',
+    category: 'Urological',
+    description: 'A chronic condition causing bladder pressure, bladder pain, and sometimes pelvic pain.',
+    prevalence: 'Affects 3-8 million women in the US.',
+    commonSymptoms: ['Bladder pressure', 'Pelvic pain', 'Frequent urination', 'Urgency', 'Pain during intercourse', 'Pain that worsens with certain foods'],
+    relatedConditions: ['Endometriosis', 'IBS', 'Fibromyalgia', 'Vulvodynia'],
+    commonMisdiagnoses: ['UTI', 'Overactive bladder', 'Endometriosis'],
+    averageDiagnosisTime: '4-7 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Chronic pelvic pain', 'Urinary frequency (8+ times/day)', 'Recurring UTI symptoms with negative cultures'],
+    references: ['AUA Guideline on IC/BPS (2022)', 'ICA Patient Handbook']
+  },
+  {
+    id: 'vulvodynia',
+    name: 'Vulvodynia',
+    category: 'Pain/Gynecological',
+    description: 'Chronic vulvar pain without an identifiable cause, lasting 3+ months.',
+    prevalence: 'Affects up to 16% of women at some point in their lives.',
+    commonSymptoms: ['Burning sensation', 'Stinging', 'Rawness', 'Throbbing', 'Pain during intercourse', 'Pain with sitting', 'Pain with tampon use'],
+    relatedConditions: ['Interstitial Cystitis', 'Fibromyalgia', 'IBS'],
+    commonMisdiagnoses: ['Yeast infection', 'STI', 'Psychological pain'],
+    averageDiagnosisTime: '5-7 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Persistent vulvar pain lasting 3+ months', 'Pain interfering with daily activities or intimacy'],
+    references: ['ISSVD Classification (2023)', 'ACOG Committee Opinion']
+  },
+  {
+    id: 'ibs',
+    name: 'Irritable Bowel Syndrome (IBS)',
+    category: 'Digestive',
+    description: 'A common disorder affecting the large intestine, causing cramping, abdominal pain, bloating, gas, and changes in bowel habits.',
+    prevalence: 'Affects 10-15% of adults; 2x more common in women.',
+    commonSymptoms: ['Abdominal cramping', 'Bloating', 'Gas', 'Diarrhea', 'Constipation', 'Mucus in stool', 'Symptoms worsen around period'],
+    relatedConditions: ['Endometriosis', 'Anxiety', 'Fibromyalgia', 'Chronic fatigue syndrome'],
+    commonMisdiagnoses: ['Endometriosis', 'IBD', 'Celiac disease', 'Ovarian cancer'],
+    averageDiagnosisTime: '4-5 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Weight loss without trying', 'Rectal bleeding', 'Persistent pain not relieved by bowel movements', 'Symptoms waking you at night'],
+    references: ['Rome IV Criteria', 'AGA Clinical Guideline on IBS (2023)']
+  },
+  {
+    id: 'fibromyalgia',
+    name: 'Fibromyalgia',
+    category: 'Musculoskeletal/Pain',
+    description: 'A condition characterized by widespread musculoskeletal pain accompanied by fatigue, sleep, memory, and mood issues.',
+    prevalence: 'Affects 2-4% of the population; 80-90% of cases are women.',
+    commonSymptoms: ['Widespread pain', 'Fatigue', 'Cognitive difficulties (fibro fog)', 'Sleep disturbances', 'Headaches', 'IBS symptoms', 'Numbness/tingling', 'Sensitivity to temperature'],
+    relatedConditions: ['Chronic fatigue syndrome', 'IBS', 'Migraines', 'TMJ disorders'],
+    commonMisdiagnoses: ['Lupus', 'Rheumatoid arthritis', 'Multiple sclerosis', 'Depression'],
+    averageDiagnosisTime: '3-5 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Widespread pain lasting 3+ months', 'Severe fatigue interfering with daily life', 'Cognitive difficulties affecting work'],
+    references: ['ACR Diagnostic Criteria (2016)', 'EULAR Revised Recommendations (2022)']
+  },
+  {
+    id: 'lupus',
+    name: 'Systemic Lupus Erythematosus (SLE)',
+    category: 'Autoimmune',
+    description: 'A systemic autoimmune disease where the immune system attacks its own tissues, affecting multiple organ systems.',
+    prevalence: 'Affects ~200,000 women in the US; 9x more common in women.',
+    commonSymptoms: ['Fatigue', 'Joint pain', 'Butterfly rash', 'Photosensitivity', 'Hair loss', 'Mouth sores', 'Fever', 'Kidney issues', 'Raynaud\'s phenomenon'],
+    relatedConditions: ['Antiphospholipid syndrome', 'Fibromyalgia', 'Sjögren\'s syndrome'],
+    commonMisdiagnoses: ['Rheumatoid arthritis', 'Fibromyalgia', 'Chronic fatigue', 'Skin conditions'],
+    averageDiagnosisTime: '6 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Unexplained rash that worsens in sunlight', 'Joint pain with fatigue', 'Unexplained fever with other symptoms'],
+    references: ['ACR/EULAR Classification Criteria (2019)', 'Lupus Foundation of America']
+  },
+  {
+    id: 'migraine',
+    name: 'Menstrual Migraine',
+    category: 'Neurological',
+    description: 'Migraines that occur in a pattern related to the menstrual cycle, often triggered by hormonal fluctuations.',
+    prevalence: 'Affects 60% of women with migraines; migraines are 3x more common in women.',
+    commonSymptoms: ['Intense headache (often one-sided)', 'Nausea', 'Light sensitivity', 'Sound sensitivity', 'Visual disturbances', 'Occurs predictably around period'],
+    relatedConditions: ['PMS', 'PMDD', 'Endometriosis'],
+    commonMisdiagnoses: ['Tension headache', 'Sinus headache', 'Cluster headache'],
+    averageDiagnosisTime: '1-3 years',
+    lifeStageRelevance: ['puberty', 'reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Migraines occurring 15+ days/month', 'Aura lasting more than 60 minutes', 'New or changed headache pattern after age 40'],
+    references: ['International Headache Society Classification (ICHD-3)', 'AHS Consensus Statement']
+  },
+  {
+    id: 'pelvic-floor',
+    name: 'Pelvic Floor Dysfunction',
+    category: 'Musculoskeletal/Urological',
+    description: 'Inability to correctly relax and coordinate pelvic floor muscles for bowel movements or other functions.',
+    prevalence: 'Affects 1 in 3 women at some point in their lives.',
+    commonSymptoms: ['Urinary incontinence', 'Pelvic pressure', 'Constipation', 'Pain during intercourse', 'Lower back pain', 'Incomplete bladder emptying'],
+    relatedConditions: ['Interstitial Cystitis', 'Endometriosis', 'IBS'],
+    commonMisdiagnoses: ['UTI', 'IBS', 'Normal postpartum recovery'],
+    averageDiagnosisTime: '2-4 years',
+    lifeStageRelevance: ['postpartum', 'perimenopause', 'menopause', 'post-menopause'],
+    whenToSeeDoctor: ['Leaking urine during activities', 'Feeling of heaviness in pelvis', 'Pain during or after intercourse'],
+    references: ['ICS/IUGA Standardization (2023)', 'ACOG Practice Bulletin']
+  },
+  {
+    id: 'postpartum-depression',
+    name: 'Postpartum Depression',
+    category: 'Mental Health',
+    description: 'A complex mix of physical, emotional, and behavioral changes after giving birth, linked to hormonal changes.',
+    prevalence: 'Affects 10-15% of new mothers; underdiagnosed and undertreated.',
+    commonSymptoms: ['Persistent sadness', 'Severe mood swings', 'Excessive crying', 'Difficulty bonding with baby', 'Withdrawing from family', 'Appetite changes', 'Insomnia or sleeping too much', 'Overwhelming fatigue', 'Feelings of worthlessness'],
+    relatedConditions: ['Postpartum anxiety', 'Postpartum psychosis', 'Depression'],
+    commonMisdiagnoses: ['Baby blues (when more severe)', 'Thyroid dysfunction', 'Adjustment disorder'],
+    averageDiagnosisTime: '3-6 months',
+    lifeStageRelevance: ['postpartum'],
+    whenToSeeDoctor: ['Symptoms lasting beyond 2 weeks postpartum', 'Thoughts of harming yourself or baby (seek immediate help)', 'Unable to care for yourself or baby', 'Extreme anxiety or panic attacks'],
+    references: ['ACOG Screening Recommendation (2023)', 'Edinburgh Postnatal Depression Scale']
+  },
+  {
+    id: 'lichen-sclerosus',
+    name: 'Lichen Sclerosus',
+    category: 'Dermatological/Gynecological',
+    description: 'A chronic skin condition that most commonly affects the vulvar and anal areas, causing white patches and scarring.',
+    prevalence: 'Affects 1 in 70-1000 women; peaks in prepuberty and postmenopause.',
+    commonSymptoms: ['White patches on skin', 'Itching (often severe)', 'Pain', 'Bruising', 'Tearing', 'Painful intercourse', 'Scarring'],
+    relatedConditions: ['Autoimmune thyroid disease', 'Vitiligo', 'Vulvar cancer risk'],
+    commonMisdiagnoses: ['Yeast infection', 'Eczema', 'Psoriasis', 'Sexual abuse (in children)'],
+    averageDiagnosisTime: '5+ years',
+    lifeStageRelevance: ['puberty', 'menopause', 'post-menopause'],
+    whenToSeeDoctor: ['Persistent vulvar itching', 'White patches on skin', 'Pain during intercourse that doesn\'t resolve'],
+    references: ['British Association of Dermatologists Guidelines (2023)', 'ISSVD Consensus']
+  },
+  {
+    id: 'chronic-fatigue',
+    name: 'Chronic Fatigue Syndrome (ME/CFS)',
+    category: 'Systemic',
+    description: 'A complex, chronic condition characterized by extreme fatigue that doesn\'t improve with rest and worsens with physical or mental activity.',
+    prevalence: 'Affects 0.4-1% of the population; 2-4x more common in women.',
+    commonSymptoms: ['Extreme fatigue', 'Post-exertional malaise', 'Unrefreshing sleep', 'Cognitive impairment', 'Orthostatic intolerance', 'Muscle pain', 'Sore throat', 'Enlarged lymph nodes'],
+    relatedConditions: ['Fibromyalgia', 'POTS', 'IBS', 'Depression'],
+    commonMisdiagnoses: ['Depression', 'Anxiety', 'Iron deficiency', 'Thyroid disorders', 'Malingering'],
+    averageDiagnosisTime: '5-7 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause', 'menopause'],
+    whenToSeeDoctor: ['Severe fatigue lasting 6+ months', 'Fatigue worsening after minimal activity', 'Unable to maintain previous activity levels'],
+    references: ['NICE Guideline NG206 (2021)', 'IOM Diagnostic Criteria (2015)']
+  },
+  {
+    id: 'vaginismus',
+    name: 'Vaginismus',
+    category: 'Sexual Health',
+    description: 'Involuntary tightening or spasm of the vaginal muscles, making penetration painful or impossible.',
+    prevalence: 'Affects 5-17% of women seeking clinical care.',
+    commonSymptoms: ['Pain during penetration', 'Burning sensation', 'Difficulty inserting tampon', 'Anxiety about intercourse', 'Muscle spasm during pelvic exam'],
+    relatedConditions: ['Vulvodynia', 'Pelvic floor dysfunction', 'Anxiety'],
+    commonMisdiagnoses: ['Normal anxiety', 'Low libido', 'UTI'],
+    averageDiagnosisTime: '3-5 years',
+    lifeStageRelevance: ['reproductive', 'perimenopause'],
+    whenToSeeDoctor: ['Pain during any form of penetration', 'Avoiding intimacy due to anticipated pain', 'Unable to use tampons or undergo pelvic exams'],
+    references: ['ISSWSH Guidelines (2023)', 'WHO ICD-11 Classification']
+  },
+  {
+    id: 'ovarian-cysts',
+    name: 'Ovarian Cysts',
+    category: 'Reproductive',
+    description: 'Fluid-filled sacs on or within the ovary, usually forming during ovulation. Most are harmless but some can cause symptoms.',
+    prevalence: 'Extremely common; most women develop at least one cyst during their lifetime.',
+    commonSymptoms: ['Pelvic pain (one-sided)', 'Bloating', 'Feeling of fullness', 'Irregular periods', 'Pain during intercourse', 'Nausea'],
+    relatedConditions: ['PCOS', 'Endometriosis', 'Ovarian torsion'],
+    commonMisdiagnoses: ['Appendicitis', 'Ectopic pregnancy', 'Endometriosis', 'IBS'],
+    averageDiagnosisTime: 'Variable; some found incidentally',
+    lifeStageRelevance: ['puberty', 'reproductive'],
+    whenToSeeDoctor: ['Sudden severe pelvic pain (seek immediate care)', 'Pain with fever or vomiting', 'Signs of shock (cold, rapid breathing)'],
+    references: ['ACOG Practice Bulletin No. 174', 'RCOG Green-top Guideline No. 62']
+  }
+];
+
+export const getConditionById = (id: string): Condition | undefined =>
+  conditionLibrary.find(c => c.id === id);
+
+export const getConditionsByLifeStage = (stage: string): Condition[] =>
+  conditionLibrary.filter(c => c.lifeStageRelevance.includes(stage as any));
+
+export const getConditionsByCategory = (category: string): Condition[] =>
+  conditionLibrary.filter(c => c.category.toLowerCase().includes(category.toLowerCase()));
