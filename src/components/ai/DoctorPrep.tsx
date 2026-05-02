@@ -77,7 +77,7 @@ export default function DoctorPrep() {
                 <YAxis dataKey="name" type="category" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} width={110} />
                 <Tooltip
                   contentStyle={{ borderRadius: 12, border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,0.1)', fontSize: 12 }}
-                  formatter={(value: number, name: string) => [name === 'frequency' ? `${value} days` : `${value}/5`, name === 'frequency' ? 'Frequency' : 'Avg Severity']}
+                  formatter={(value: any, name: any) => [name === 'frequency' ? `${value} days` : `${value}/5`, name === 'frequency' ? 'Frequency' : 'Avg Severity']}
                 />
                 <Bar dataKey="frequency" fill="#a855f7" radius={[0, 6, 6, 0]} name="frequency" />
               </BarChart>
