@@ -217,13 +217,13 @@ export const useBloomStore = create<BloomState>((set) => ({
   setSidebarOpen: (open) => set({ sidebarOpen: open }),
 }));
 
-// ============================================================
-// Session Restore on Refresh
-// ============================================================
 supabase.auth.getSession().then(async ({ data: { session } }) => {
   if (session) {
     try {
-      const logs = await api.getLogs();
+      const logsData = await api.getLogs();
+      // Array ensure karo — agar error aaye toh empty array
+      const logs = Array.isArray(logsData) ? logsData : [];
+      
       let qCompleted = false;
       try {
         const profile = await api.getProfile();
@@ -233,16 +233,25 @@ supabase.auth.getSession().then(async ({ data: { session } }) => {
       useBloomStore.setState({
         isAuthenticated: true,
         currentUser: session.user as any,
-        symptomLogs: logs,
+        symptomLogs: logs,  // ← guaranteed array
         isDemoMode: false,
         questionnaireCompleted: qCompleted,
         showQuestionnaire: !qCompleted,
       });
     } catch (err) {
       console.error('Session restore failed:', err);
+      // Error pe bhi app crash mat karo
+      useBloomStore.setState({
+        isAuthenticated: true,
+        currentUser: session.user as any,
+        symptomLogs: [],
+        isDemoMode: false,
+        questionnaireCompleted: false,
+        showQuestionnaire: true,
+      });
     }
   }
-});
+});;
 
 // Auth state listener — logout detect karo
 supabase.auth.onAuthStateChange((event, session) => {
