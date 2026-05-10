@@ -5,21 +5,26 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useBloomStore } from '../../store/useBloomStore';
-import { generateBloomResponse, checkEmergencySymptoms } from '../../utils/aiEngine';
-import { Brain, Send, Sparkles, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { generateBloomResponse, generateGeminiResponse, checkEmergencySymptoms } from '../../utils/aiEngine';
+import { Brain, Send, Sparkles, AlertTriangle, ShieldCheck, Key } from 'lucide-react';
 
 export default function AskBloom() {
   const { conversations, symptomLogs, addConversationMessage } = useBloomStore();
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('bloom_gemini_key') || '');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const conv = conversations[0]; // Use first conversation
+
+  useEffect(() => {
+    localStorage.setItem('bloom_gemini_key', apiKey);
+  }, [apiKey]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [conv?.messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() || !conv) return;
 
     // Check for emergency
@@ -44,12 +49,19 @@ export default function AskBloom() {
     setInput('');
     setIsTyping(true);
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      const response = generateBloomResponse(input, symptomLogs);
+    if (apiKey) {
+      // Use actual Gemini API
+      const response = await generateGeminiResponse(input, symptomLogs, apiKey);
       addConversationMessage(conv.id, response);
       setIsTyping(false);
-    }, 1200);
+    } else {
+      // Fallback to simulated response
+      setTimeout(() => {
+        const response = generateBloomResponse(input, symptomLogs);
+        addConversationMessage(conv.id, response);
+        setIsTyping(false);
+      }, 1200);
+    }
   };
 
   const suggestions = [
@@ -62,21 +74,37 @@ export default function AskBloom() {
   return (
     <div className="space-y-4 flex flex-col" style={{ height: 'calc(100vh - 120px)' }}>
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold font-[var(--font-display)] flex items-center gap-2">
-          <Brain className="text-bloom-500" size={24} /> Ask Bloom
-        </h1>
-        <p className="text-warm-400 text-sm mt-1">
-          AI-powered health insights based on your symptom data
-        </p>
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold font-[var(--font-display)] flex items-center gap-2">
+            <Brain className="text-bloom-500" size={24} /> Ask Bloom
+          </h1>
+          <p className="text-warm-400 text-sm mt-1 flex items-center gap-2">
+            AI insights backed by clinical research data
+            <span className="badge badge-bloom text-[10px] px-2 py-0.5">Research Mode</span>
+          </p>
+        </div>
+        
+        {/* API Key Input */}
+        <div className="relative w-full md:w-64 shrink-0">
+          <Key size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-warm-400" />
+          <input
+            type="password"
+            placeholder="Gemini API Key (Optional)"
+            className="bloom-input pl-8 text-xs w-full py-1.5 min-h-0"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+          />
+          <p className="text-[9px] text-warm-400 mt-1 ml-1">Connect API key for live responses</p>
+        </div>
       </div>
 
       {/* Disclaimer */}
       <div className="flex items-start gap-2 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs">
         <ShieldCheck size={16} className="text-amber-600 shrink-0 mt-0.5" />
         <p className="text-amber-800">
-          <strong>Important:</strong> Bloom provides pattern observations and health education, not medical diagnoses.
-          Always consult a healthcare professional for medical advice.
+          <strong>Important:</strong> Bloom provides pattern observations compared to clinical datasets (WHO, NIH). 
+          This is for health education, not medical diagnoses. Always consult a healthcare professional.
         </p>
       </div>
 

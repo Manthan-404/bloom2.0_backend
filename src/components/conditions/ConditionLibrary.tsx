@@ -5,8 +5,9 @@
 
 import { useState } from 'react';
 import { conditionLibrary } from '../../data/conditions';
+import { getResearchDatasetById } from '../../data/researchDatasets';
 import { useBloomStore } from '../../store/useBloomStore';
-import { Library, Search, Clock, AlertTriangle, ChevronDown, ChevronUp, BookOpen, Users } from 'lucide-react';
+import { Library, Search, Clock, AlertTriangle, ChevronDown, ChevronUp, BookOpen, Users, Database } from 'lucide-react';
 
 export default function ConditionLibrary() {
   const { currentUser } = useBloomStore();
@@ -77,6 +78,11 @@ export default function ConditionLibrary() {
                   {currentUser && condition.lifeStageRelevance.includes(currentUser.lifeStage) && (
                     <span className="badge badge-sage text-[10px]">Relevant to you</span>
                   )}
+                  {getResearchDatasetById(condition.id) && (
+                    <span className="flex items-center gap-1 text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium border border-blue-200">
+                      <Database size={10} /> Research Dataset
+                    </span>
+                  )}
                 </div>
                 <p className="text-xs text-warm-500 mt-1 line-clamp-2">{condition.description}</p>
                 <div className="flex items-center gap-4 mt-2 text-[11px] text-warm-400">
@@ -91,11 +97,28 @@ export default function ConditionLibrary() {
               <div className="px-4 pb-4 space-y-4 animate-[slide-up_0.3s_ease-out] border-t border-warm-100 pt-4">
                 {/* Symptoms */}
                 <div>
-                  <h4 className="text-xs font-semibold text-warm-600 uppercase tracking-wide mb-2">Common Symptoms</h4>
+                  <h4 className="text-xs font-semibold text-warm-600 uppercase tracking-wide mb-2 flex items-center justify-between">
+                    <span>Common Symptoms</span>
+                    {getResearchDatasetById(condition.id) && (
+                      <span className="text-[10px] text-blue-600 normal-case font-normal flex items-center gap-1">
+                        <Database size={10} /> Clinical probabilities shown
+                      </span>
+                    )}
+                  </h4>
                   <div className="flex flex-wrap gap-1.5">
-                    {condition.commonSymptoms.map(s => (
-                      <span key={s} className="px-2 py-1 rounded-lg bg-bloom-50 text-xs text-bloom-700">{s}</span>
-                    ))}
+                    {(() => {
+                      const researchData = getResearchDatasetById(condition.id);
+                      if (researchData) {
+                        return researchData.symptoms.map(s => (
+                          <span key={s.name} className="px-2 py-1 rounded-lg bg-bloom-50 text-xs text-bloom-700 flex items-center gap-1 border border-bloom-100">
+                            {s.name} <span className="text-[10px] opacity-70">({(s.probability * 100).toFixed(0)}%)</span>
+                          </span>
+                        ));
+                      }
+                      return condition.commonSymptoms.map(s => (
+                        <span key={s} className="px-2 py-1 rounded-lg bg-bloom-50 text-xs text-bloom-700">{s}</span>
+                      ));
+                    })()}
                   </div>
                 </div>
 
@@ -110,6 +133,23 @@ export default function ConditionLibrary() {
                     ))}
                   </div>
                 </div>
+
+                {/* Research Patterns */}
+                {getResearchDatasetById(condition.id) && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-warm-600 uppercase tracking-wide mb-2 flex items-center gap-1">
+                      <Database size={12} className="text-blue-500" /> Clinical Data Patterns
+                    </h4>
+                    <ul className="space-y-2">
+                      {getResearchDatasetById(condition.id)?.patterns.map((p, i) => (
+                        <li key={i} className="text-xs text-warm-600 bg-blue-50/50 p-2 rounded-lg border border-blue-100">
+                          <p className="font-medium text-blue-800 mb-0.5">{p.frequency} • {p.cycle_phase}</p>
+                          <p>{p.description}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* When to see doctor */}
                 <div>
