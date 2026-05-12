@@ -101,7 +101,8 @@ export const useBloomStore = create<BloomState>((set) => ({
       // If profile fetch fails, proceed anyway
     }
 
-    const logs = await api.getLogs();
+    const logsData = await api.getLogs();
+    const logs = Array.isArray(logsData) ? logsData : [];
     set({
       isAuthenticated: true,
       currentUser: data.user as any,
@@ -189,8 +190,8 @@ export const useBloomStore = create<BloomState>((set) => ({
       if (response.error) throw new Error(response.error.message || 'Failed to save log');
       
       set((s) => ({ symptomLogs: [...s.symptomLogs, response] }));
-    } catch (err) {
-      console.error('Log save failed:', err);
+    } catch (err: any) {
+      console.error('Log save failed:', err.message || err);
       // Optional: keep local for now, but usually better to show error
       set((s) => ({ symptomLogs: [...s.symptomLogs, { ...log, id: 'temp-' + Date.now() }] }));
     }
